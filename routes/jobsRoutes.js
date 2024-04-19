@@ -1,6 +1,6 @@
 import express from "express";
 import userAuth from "../middlewares/authMiddleware.js";
-import { createJobController, getAllJobsController } from "../controllers/jobsController.js";
+import { createJobController, deleteJobController, getAllJobsController, updateJobController } from "../controllers/jobsController.js";
 
 const router = express.Router();
 
@@ -9,5 +9,11 @@ router.post("/create-job", userAuth, createJobController);
 
 //Get jobs || GET
 router.get("/get-job", userAuth, getAllJobsController);
+
+//Update Jobs || PUT || PATCH
+router.patch("/update-job/:id",userAuth, updateJobController)
+
+//Update Jobs || PUT || DELETE
+router.delete("/delete-job/:id",userAuth, deleteJobController)
 
 export default router;
