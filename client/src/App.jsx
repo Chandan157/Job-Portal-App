@@ -1,7 +1,22 @@
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import HomePage from "./pages/HomePage";
+import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
+import Regiser from "./pages/Regiser";
 
 function App() {
-  return <h1>Hello</h1>;
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Regiser />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
+  );
 }
 
 export default App;
