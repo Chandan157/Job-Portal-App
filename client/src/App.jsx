@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Regiser from "./pages/Regiser";
+import "../src/App.css"
 
 function App() {
   return (
