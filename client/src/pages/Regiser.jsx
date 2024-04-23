@@ -1,32 +1,32 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import InputForm from "../components/shared/InputForm";
 
 const Regiser = () => {
-  // const [name, setName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [location, setLocation] = useState("");
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const[values,setValues]=useState({
-    name:"",
-    lastName:"",
-    email:"",
-    password:"",
-    location:""
-  })
+  // const[values,setValues]=useState({
+  //   name:"",
+  //   lastName:"",
+  //   email:"",
+  //   password:"",
+  //   location:""
+  // })
 
-  //handle inputs
-  const handleChange = (e) => {
-    const value=e.target.value
-    setValues({...values, [e.target.name]: value });
-  };
+  // //handle inputs
+  // const handleChange = (e) => {
+  //   const value=e.target.value
+  //   setValues({...values, [e.target.name]: value });
+  // };
 
   //form function
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      console.log(values);
+      console.log(name,lastName, email, password);
     } catch (error) {
       console.log(error);
     }
@@ -41,67 +41,39 @@ const Regiser = () => {
             height={150}
             width={400}
           />
-          <div className="mb-1">
-            <label htmlFor="name" className="form-label">
-              Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              name="name"
-              value={values.name}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-1">
-            <label htmlFor="name" className="form-label">
-              Last Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              name="lastName"
-              value={values.lastName}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-1">
-            <label htmlFor="email" className="form-label">
-              Email address
-            </label>
-            <input
-              type="email"
-              className="form-control"
-              name="email"
-              value={values.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-1">
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              name="password"
-              value={values.password}
-              onChange={handleChange}
-            />
-          </div>
+          <InputForm
+            htmlFor="name"
+            labelText={"Name"}
+            type={"text"}
+            value={name}
+            handleChange={(e) => setName(e.target.value)}
+            name="name"
+          />
+          <InputForm
+            htmlFor="lastName"
+            labelText={"Last Name"}
+            type={"text"}
+            value={lastName}
+            handleChange={(e) => setLastName(e.target.value)}
+            name="lastName"
+          />
+          <InputForm
+            htmlFor="email"
+            labelText={"Email"}
+            type={"email"}
+            value={email}
+            handleChange={(e) => setEmail(e.target.value)}
+            name="email"
+          />
+          <InputForm
+            htmlFor="password"
+            labelText={"Password"}
+            type={"text"}
+            value={password}
+            handleChange={(e) => setPassword(e.target.value)}
+            name="password"
+          />
 
-          <div className="mb-1">
-            <label htmlFor="location" className="form-label">
-              Location
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              name="location"
-              value={values.location}
-              onChange={handleChange}
-            />
-          </div>
           <div className="d-flex justify-content-between">
             <p>
               Already Register <Link to="/login">Login</Link>
