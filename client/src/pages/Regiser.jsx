@@ -1,6 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputForm from "../components/shared/InputForm";
+import { useDispatch ,useSelector} from "react-redux";
+import { hideLoading, showLoading } from "../redux/features/alertSlice";
+import axios from "axios";
+import Spinner from "../components/shared/Spinner";
 
 const Regiser = () => {
   const [name, setName] = useState("");
@@ -8,32 +12,43 @@ const Regiser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const[values,setValues]=useState({
-  //   name:"",
-  //   lastName:"",
-  //   email:"",
-  //   password:"",
-  //   location:""
-  // })
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
-  // //handle inputs
-  // const handleChange = (e) => {
-  //   const value=e.target.value
-  //   setValues({...values, [e.target.name]: value });
-  // };
+  //redux state
+  const {loading}=useSelector(state=>state.alerts)
+  //hooks
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //form function
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(name,lastName, email, password);
+      if (!name || !lastName || !email || !password) {
+        return alert("Please provide all fields");
+      }
+      dispatch(showLoading());
+      const { data } = await axios.post(`${API_BASE_URL}/api/v1/auth/register`, {
+        name,
+        lastName,
+        email,
+        password,
+      });
+      dispatch(hideLoading());
+      if (data.success) {
+        alert("Successfully registered");
+        navigate("/dashboard");
+      }
     } catch (error) {
+      dispatch(hideLoading());
+      alert("Please try again!");
       console.log(error);
     }
   };
   return (
     <>
-      <div className="form-container">
+      {loading?(<Spinner/>):(
+        <div className="form-container">
         <form className="card p-2" onSubmit={handleSubmit}>
           <img
             src="/assets/images/logo/logo.png"
@@ -84,6 +99,7 @@ const Regiser = () => {
           </div>
         </form>
       </div>
+      )}
     </>
   );
 };
