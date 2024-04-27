@@ -1,23 +1,52 @@
 import { Routes, Route } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
+import Register from "./pages/Regiser";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
-import Regiser from "./pages/Regiser";
-import "../src/App.css"
-import { ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import PrivateRoute from "./components/routes/PrivateRoute";
+import PublicRoute from "./components/routes/PublicRoute";
 
 function App() {
   return (
     <>
-    <ToastContainer/>
+      {" "}
+      <ToastContainer />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Regiser />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <HomePage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

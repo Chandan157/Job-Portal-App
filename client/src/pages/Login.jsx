@@ -6,6 +6,8 @@ import axios from "axios";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
 import Spinner from "../components/shared/Spinner";
 import { toast } from "react-toastify";
+import { setUser } from "../redux/features/auth/authSlice";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,6 +31,7 @@ const Login = () => {
       });
       if (data.success) {
         dispatch(hideLoading());
+        dispatch(setUser(data.user));
         localStorage.setItem("token", data.token);
         toast.success("Login SUccessfully ");
         navigate("/dashboard");
