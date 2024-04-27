@@ -3,10 +3,10 @@ import InputFrom from "../components/shared/InputForm";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { hideLoading, showLoading } from "../redux/features/alertSlice";
+import { hideLoading, showLoading } from "../redux/features/AlertSlice";
 import Spinner from "../components/shared/Spinner";
 import { toast } from "react-toastify";
-import { setUser } from "../redux/features/auth/authSlice";
+import { setUser } from "../redux/features/auth/AuthSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");

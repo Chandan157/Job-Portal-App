@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import InputFrom from "../components/shared/InputForm";
 import { useDispatch, useSelector } from "react-redux";
-import { hideLoading, showLoading } from "../redux/features/alertSlice";
+import { hideLoading, showLoading } from "../redux/features/AlertSlice";
 import axios from "axios";
 import Spinner from "../components/shared/Spinner";
 import { toast } from "react-toastify";

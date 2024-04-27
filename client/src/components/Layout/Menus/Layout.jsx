@@ -1,7 +1,10 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+// eslint-disable-next-line no-unused-vars
+import React from "react";
+import { Link, useLocation, useNavigate} from "react-router-dom";
 import { toast } from "react-toastify";
-import "../../styles/Layout.css";
-import { userMenu } from "./Menus/UserMenu";
+import "../../../styles/Layout.css";
+import { userMenu } from "../Menus/UserMenu";
+// eslint-disable-next-line react/prop-types
 const Layout = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -27,6 +30,7 @@ const Layout = ({ children }) => {
             {sidebarMenu.map((menu) => {
               const isActive = location.pathname === menu.path;
               return (
+                // eslint-disable-next-line react/jsx-key
                 <div className={`menu-item ${isActive && "active"}`}>
                   <i className={menu.icon}></i>
                   <Link to={menu.path}>{menu.name}</Link>

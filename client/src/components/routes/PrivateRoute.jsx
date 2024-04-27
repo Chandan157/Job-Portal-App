@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { showLoading, hideLoading } from "../../redux/features/alertSlice";
+import { showLoading, hideLoading } from "../../redux/features/AlertSlice";
 import axios from "axios";
-import { setUser } from "../../redux/features/auth/authSlice";
+import { setUser } from "../../redux/features/auth/AuthSlice";
 
 import { Navigate } from "react-router-dom";
 
